@@ -8,6 +8,7 @@ import Jackets from './components/jackets/Jackets';
 import Sneakers from './components/sneakers/Sneakers';
 import Womens from './components/womens/Womens';
 import Mens from './components/mens/Mens';
+import Shop from './components/shop/Shop';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path='/sneakers' component={Sneakers} />
           <Route exact path='/womens' component={Womens} />
           <Route exact path='/mens' component={Mens} />
+          <Route exact path='/shop' component={Shop} />
         </Switch>
       </Router>
     )
