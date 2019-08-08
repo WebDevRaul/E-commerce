@@ -13,7 +13,6 @@ const FormInput = ({ name, value, onChange, type, label }) => (
       value={value}
       onChange={onChange}
       type={type}
-      required
       autoComplete='true'
       />
       {

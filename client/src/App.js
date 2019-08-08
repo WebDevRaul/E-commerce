@@ -20,14 +20,14 @@ import './App.css';
 
 class App extends Component {
   state = {
-    isAuth: null
+    currentUser: null
   }
 
   unsubscribeFromAuth = null;
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ isAuth: user })
+      this.setState({ currentUser: user })
     });
   };
 
@@ -37,10 +37,11 @@ class App extends Component {
   
   
   render() {
+    const { currentUser } = this.state;
     return (
       <div className='App'>
         <Router>
-          <Navbar />
+          <Navbar currentUser={currentUser} />
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/hats' component={Hats} />
@@ -50,7 +51,7 @@ class App extends Component {
             <Route exact path='/mens' component={Mens} />
             <Route exact path='/shop' component={Shop} />
 
-            <Route exact path='/auth' component={Auth} />
+            <Route exact path='/sign-in' component={Auth} />
           </Switch>
         </Router>
       </div>
