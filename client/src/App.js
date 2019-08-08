@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components
+import Navbar from './components/layout/Navbar/Navbar';
 import HomePage from './components/homepage/Home_Page';
 import Hats from './components/hats/Hats';
 import Jackets from './components/jackets/Jackets';
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Router>
+          <Navbar />
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/hats' component={Hats} />
