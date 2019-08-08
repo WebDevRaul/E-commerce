@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 // Components
 import FormInput from '../../common/Form_input';
 
+// Scss
+import './sign_in.scss';
+
 class SignIn extends Component {
   state = {
     email: '',
@@ -11,6 +14,8 @@ class SignIn extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+
+    this.setState({ email: '', password: '' })
   }
 
   onChange = e => {
@@ -26,17 +31,17 @@ class SignIn extends Component {
         <form onSubmit={this.onSubmit}>
           <FormInput
             name='email'
-            label='Email'
             value={email}
             onChange={this.onChange}
             type='email'
+            label={true}
           />
           <FormInput
             name='password'
-            label='Password'
             value={password}
             onChange={this.onChange}
             type='password'
+            label={true}
           />
           <input type='submit' value='Submit' />
         </form>
