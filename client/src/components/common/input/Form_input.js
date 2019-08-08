@@ -17,7 +17,11 @@ const FormInput = ({ name, value, onChange, type, label }) => (
       autoComplete='true'
       />
       {
-        label ? <label className={classnames('form-input-label', { 'shrink': value })}>{name.charAt(0).toUpperCase() + name.slice(1)}</label> : null 
+        label ? 
+        <label className={classnames('form-input-label', { 'shrink': value })}>
+          {name.charAt(0).toUpperCase() + name.slice(1)}
+        </label>
+        : null 
       }
   </div>
 );
