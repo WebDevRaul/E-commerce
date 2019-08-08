@@ -10,6 +10,7 @@ import Sneakers from './components/sneakers/Sneakers';
 import Womens from './components/womens/Womens';
 import Mens from './components/mens/Mens';
 import Shop from './components/shop/Shop';
+import Auth from './components/auth/Auth';
 
 // Css
 import './App.css';
@@ -28,6 +29,8 @@ class App extends Component {
             <Route exact path='/womens' component={Womens} />
             <Route exact path='/mens' component={Mens} />
             <Route exact path='/shop' component={Shop} />
+
+            <Route exact path='/auth' component={Auth} />
           </Switch>
         </Router>
       </div>
