@@ -12,10 +12,30 @@ import Mens from './components/mens/Mens';
 import Shop from './components/shop/Shop';
 import Auth from './components/auth/Auth';
 
+// Firebase
+import { auth } from './firebase/utils';
+
 // Css
 import './App.css';
 
 class App extends Component {
+  state = {
+    isAuth: null
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({ isAuth: user })
+    });
+  };
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+  
+  
   render() {
     return (
       <div className='App'>
