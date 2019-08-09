@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import isEmpty from '../../common/isEmpty';
 
 // Firebase
 import { auth } from '../../../firebase/utils';
@@ -23,7 +24,7 @@ const Navbar = ({ user }) => (
       <Link className='option' to='/shop'>Shop</Link>
       <Link className='option' to='/contact'>Contact</Link>
       {
-        user ? 
+        !isEmpty(user.user) ? 
         <div className='option' onClick={() => auth.signOut()}>Sign Out</div>
         : <Link className='option' to='/sign-in'>Sign In</Link>
       }
