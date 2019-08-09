@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import isEmpty from '../isEmpty';
 
 // Scss
 import './form_input.scss';
@@ -17,9 +18,9 @@ const FormInput = ({ name, value, onChange, type, label }) => (
       required
       />
       {
-        label ? 
+        !isEmpty(label) ? 
         <label className={classnames('form-input-label', { 'shrink': value })}>
-          {name.charAt(0).toUpperCase() + name.slice(1)}
+          {label.charAt(0).toUpperCase() + label.slice(1)}
         </label>
         : null 
       }
@@ -31,7 +32,7 @@ FormInput.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
-  label: PropTypes.bool.isRequired
+  label: PropTypes.string.isRequired
 }
 
 export default FormInput;

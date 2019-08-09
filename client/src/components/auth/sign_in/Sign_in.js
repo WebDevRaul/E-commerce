@@ -38,14 +38,14 @@ class SignIn extends Component {
             value={email}
             onChange={this.onChange}
             type='email'
-            label={true}
+            label='email'
           />
           <FormInput
             name='password'
             value={password}
             onChange={this.onChange}
             type='password'
-            label={true}
+            label='password'
           />
           <div className='buttons'>
             <CustomButton value='Sign in' type='submit' isClass='' />
