@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import isEmpty from '../../common/isEmpty';
 
+// Components
+import CartIcon from '../../common/cart_icon/Cart_Icon';
+
 // Firebase
 import { auth } from '../../../firebase/utils';
 
@@ -28,6 +31,7 @@ const Navbar = ({ user }) => (
         <div className='option' onClick={() => auth.signOut()}>Sign Out</div>
         : <Link className='option' to='/sign-in'>Sign In</Link>
       }
+    <CartIcon />
     </div>
   </div>
 );
