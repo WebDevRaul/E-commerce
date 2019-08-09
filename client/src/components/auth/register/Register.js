@@ -29,7 +29,7 @@ class Register extends Component {
     if(password !== password2) return alert('Passwords don`t match');
     try{
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName: name });
+      await createUserProfileDocument(user, { name });
       this.setState({ name: '', email: '', password: '', password2: '' });
     }
     catch(error) { console.log(error) }

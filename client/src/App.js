@@ -50,6 +50,7 @@ class App extends Component {
   
   render() {
     const { currentUser } = this.state;
+    console.log(currentUser)
     return (
       <div className='App'>
         <Router>
