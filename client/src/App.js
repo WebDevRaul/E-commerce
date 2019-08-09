@@ -13,7 +13,7 @@ import Shop from './components/shop/Shop';
 import Auth from './components/auth/Auth';
 
 // Firebase
-import { auth } from './firebase/utils';
+import { auth, createUserProfileDocument } from './firebase/utils';
 
 // Css
 import './App.css';
@@ -26,8 +26,8 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+      createUserProfileDocument(user);
     });
   };
 
