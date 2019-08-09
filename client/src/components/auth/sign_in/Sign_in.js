@@ -5,7 +5,7 @@ import FormInput from '../../common/input/Form_input';
 import CustomButton from '../../common/button/Custom_button';
 
 // Firebase
-import { signInWithGoogle } from '../../../firebase/utils';
+import { auth, signInWithGoogle } from '../../../firebase/utils';
 
 // Scss
 import './sign_in.scss';
@@ -16,10 +16,14 @@ class SignIn extends Component {
     password: ''
   }
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
+    const { email, password } = this.state;
 
-    this.setState({ email: '', password: '' })
+    try{
+      await auth.signInWithEmailAndPassword(email, password)
+      this.setState({ email: '', password: '' })
+    } catch(error) { console.log(error) }
   }
 
   onChange = e => {

@@ -15,6 +15,10 @@ import Auth from './components/auth/Auth';
 // Firebase
 import { auth, createUserProfileDocument } from './firebase/utils';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 // Css
 import './App.css';
 
@@ -50,23 +54,24 @@ class App extends Component {
   
   render() {
     const { currentUser } = this.state;
-    console.log(currentUser)
     return (
       <div className='App'>
-        <Router>
-          <Navbar currentUser={currentUser} />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/hats' component={Hats} />
-            <Route exact path='/jackets' component={Jackets} />
-            <Route exact path='/sneakers' component={Sneakers} />
-            <Route exact path='/womens' component={Womens} />
-            <Route exact path='/mens' component={Mens} />
-            <Route exact path='/shop' component={Shop} />
+        <Provider store={store}>
+          <Router>
+            <Navbar currentUser={currentUser} />
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/hats' component={Hats} />
+              <Route exact path='/jackets' component={Jackets} />
+              <Route exact path='/sneakers' component={Sneakers} />
+              <Route exact path='/womens' component={Womens} />
+              <Route exact path='/mens' component={Mens} />
+              <Route exact path='/shop' component={Shop} />
 
-            <Route exact path='/sign-in' component={Auth} />
-          </Switch>
-        </Router>
+              <Route exact path='/sign-in' component={Auth} />
+            </Switch>
+          </Router>
+        </Provider>
       </div>
     )
   }
