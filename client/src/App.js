@@ -18,14 +18,12 @@ import { auth, createUserProfileDocument } from './firebase/utils';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { set_user } from './redux/actions/user';
 
 // Css
 import './App.css';
 
 class App extends Component {
-  state = {
-    currentUser: null
-  }
 
   unsubscribeFromAuth = null;
 
@@ -34,15 +32,13 @@ class App extends Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          })
+          store.dispatch(set_user({
+            id: snapShot.id,
+            ...snapShot.data() 
+          }))
         });
       } else {
-        this.setState({ currentUser: null })
+        store.dispatch(set_user({}))
       }
     });
   };
@@ -53,12 +49,11 @@ class App extends Component {
   
   
   render() {
-    const { currentUser } = this.state;
     return (
-      <div className='App'>
-        <Provider store={store}>
+      <Provider store={store}>
+        <div className='App'>
           <Router>
-            <Navbar currentUser={currentUser} />
+            <Navbar />
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/hats' component={Hats} />
@@ -71,10 +66,10 @@ class App extends Component {
               <Route exact path='/sign-in' component={Auth} />
             </Switch>
           </Router>
-        </Provider>
-      </div>
+        </div>
+      </Provider>
     )
   }
-}
+};
 
 export default App;

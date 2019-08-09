@@ -8,7 +8,7 @@ const user = (state=INITIAL_STATE, action) => {
   switch(action.type) {
     case USER.SET_USER:
       return {
-        state,
+        ...state,
         user: action.payload
       }
 
