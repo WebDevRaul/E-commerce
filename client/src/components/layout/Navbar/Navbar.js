@@ -5,6 +5,7 @@ import isEmpty from '../../common/isEmpty';
 
 // Components
 import CartIcon from '../../common/cart_icon/Cart_Icon';
+import Cart from './cart/Cart';
 
 // Firebase
 import { auth } from '../../../firebase/utils';
@@ -33,6 +34,7 @@ const Navbar = ({ user }) => (
       }
     <CartIcon />
     </div>
+    <Cart />
   </div>
 );
 
