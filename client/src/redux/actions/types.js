@@ -3,7 +3,8 @@ const USER = {
 }
 
 const CART = {
-  TOGGLE: 'TOGGLE'
+  TOGGLE: 'TOGGLE',
+  ADD_ITEM: 'ADD_ITEM'
 }
 
 export { USER, CART }

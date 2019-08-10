@@ -13,11 +13,13 @@
     background-position: center;
     margin-bottom: 5px;
   }
-  .custom-button {
+  .button-wrapper {
     width: 80%;
-    opacity: 0.7;
     position: absolute;
     top: 255px;
+  }
+  .custom-button {
+    opacity: 0.7;
     display: none;
   }
 

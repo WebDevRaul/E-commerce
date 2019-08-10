@@ -9,7 +9,7 @@ import './cart.scss';
 const Cart = () => (
   <div className='cart-dropdown'>
     <div className='cart-items' />
-    <CustomButton type='button' value='GO TO CHECKOUT' isClass='' />
+    <CustomButton value='GO TO CHECKOUT' isClass='' />
   </div>
 )
 
