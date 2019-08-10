@@ -15,7 +15,7 @@ import './auth.scss';
 
 const Auth = ({ user }) => {
   return (
-    isEmpty(user.user) ?
+    isEmpty(user) ?
     <div className='auth'>
       <SignIn />
       <Register />
@@ -28,8 +28,8 @@ Auth.propTypes = {
   user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = ({ user: { user } }) => ({
+  user
 });
 
 export default connect(mapStateToProps, {})(Auth);

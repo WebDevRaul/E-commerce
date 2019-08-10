@@ -2,4 +2,8 @@ const USER = {
   SET_USER: 'SET_USER'
 }
 
-export { USER }
+const CART = {
+  TOGGLE: 'TOGGLE'
+}
+
+export { USER, CART }

@@ -1,7 +1,7 @@
 import { USER } from '../actions/types';
 
 const INITIAL_STATE = {
-  user: null
+  user: {}
 }
 
 const user = (state=INITIAL_STATE, action) => {
