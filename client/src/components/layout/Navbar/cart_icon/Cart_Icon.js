@@ -5,6 +5,7 @@ import { ReactComponent as ShoppingIcon } from '../../../../assets/shopping-bag.
 // Redux
 import { connect } from 'react-redux';
 import { toggle_cart } from '../../../../redux/actions/cart';
+import { select_cart_items_count } from '../../../../redux/selectors/cart';
 
 // Scss
 import './cart_icon.scss';
@@ -21,8 +22,8 @@ CartIcon.propTypes = {
   toggle_cart: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ cart: { cart_item } }) => ({
-  item_count: cart_item.reduce((acc, cart_item) =>acc + cart_item.qty, 0)
+const mapStateToProps = state=> ({
+  item_count: select_cart_items_count(state)
 });
 
 export default connect( mapStateToProps, { toggle_cart } )(CartIcon);

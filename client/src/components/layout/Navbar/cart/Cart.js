@@ -6,6 +6,7 @@ import CartItem from '../cart_item/cart_item';
 
 // Redux
 import { connect } from 'react-redux';
+import { select_cart_items } from '../../../../redux/selectors/cart';
 
 // Common
 import CustomButton from '../../../common/button/Custom_button';
@@ -30,8 +31,8 @@ Cart.propTypes = {
   cart_item: PropTypes.array.isRequired
 }
 
-const mapStateToProps = ({ cart: { cart_item } }) => ({
-  cart_item
-})
+const mapStateToProps = state => ({
+  cart_item: select_cart_items(state)
+});
 
 export default connect(mapStateToProps, null)(Cart);
