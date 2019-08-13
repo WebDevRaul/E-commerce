@@ -11,6 +11,7 @@ import Womens from './components/womens/Womens';
 import Mens from './components/mens/Mens';
 import Shop from './components/shop/Shop';
 import Auth from './components/auth/Auth';
+import Checkout from './components/checkout/Checkout';
 
 // Firebase
 import { auth, createUserProfileDocument } from './firebase/utils';
@@ -62,6 +63,7 @@ class App extends Component {
               <Route exact path='/womens' component={Womens} />
               <Route exact path='/mens' component={Mens} />
               <Route exact path='/shop' component={Shop} />
+              <Route exact path='/checkout' component={Checkout} />
 
               <Route exact path='/sign-in' component={Auth} />
             </Switch>

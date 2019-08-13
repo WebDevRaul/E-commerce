@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 // Components
 import CartItem from '../cart_item/cart_item';
@@ -14,16 +15,21 @@ import CustomButton from '../../../common/button/Custom_button';
 // Scss
 import './cart.scss';
 
-const Cart = ({ cart_item }) => (
+const Cart = ({ cart_item, history }) => (
   <div className='cart-dropdown'>
     <div className='cart-items'>
       {
+        cart_item.length ? 
         cart_item.map(item => (
           <CartItem key={item.id} item={item} />
         ))
+        :
+        <span className='empty-message'>Your cart is empty</span>
       }
     </div>
-    <CustomButton value='GO TO CHECKOUT' isClass='' />
+    <div className='button-wrapper' onClick={() => history.push('/checkout')}>
+      <CustomButton value='GO TO CHECKOUT' isClass=''  />
+    </div>
   </div>
 );
 
@@ -35,4 +41,4 @@ const mapStateToProps = state => ({
   cart_item: select_cart_items(state)
 });
 
-export default connect(mapStateToProps, null)(Cart);
+export default withRouter(connect(mapStateToProps, null)(Cart));
