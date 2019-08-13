@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Components
+import CheckoutItem from './checkout_item/Checkout_Item';
+
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -29,7 +32,7 @@ const Checkout = ({ cart_item, cart_total }) => (
       </div>
     </div>
     {
-      cart_item.map(i => i.name)
+      cart_item.map(item => <CheckoutItem key={item.id} item={item} />)
     }
     <div className='total'>TOTAL: ${cart_total}</div>
     <div className='test-warning'>
