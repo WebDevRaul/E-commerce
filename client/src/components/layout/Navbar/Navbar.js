@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import isEmpty from '../../common/isEmpty';
+import { createStructuredSelector } from 'reselect';
 
 // Components
 import CartIcon from './cart_icon/Cart_Icon';
@@ -12,6 +13,8 @@ import { auth } from '../../../firebase/utils';
 
 // Redux
 import { connect } from 'react-redux';
+import { select_user } from '../../../redux/selectors/user';
+import { select_cart_hidden } from '../../../redux/selectors/cart';
 
 // Assets
 import { ReactComponent as Logo } from '../../../assets/crown.svg';
@@ -43,9 +46,19 @@ Navbar.propTypes = {
   hidden: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = ({ user: { user }, cart: { hidden } }) => ({
-  user,
-  hidden
+const mapStateToProps = createStructuredSelector({
+  user: select_user,
+  hidden: select_cart_hidden
 });
+
+// const mapStateToProps = state => ({
+//   user: select_user(state),
+//   hidden: select_cart_hidden(state)
+// });
+
+// const mapStateToProps = ({ user: { user }, cart: { hidden } }) => ({
+//   user,
+//   hidden
+// });
 
 export default connect(mapStateToProps, {})(Navbar);

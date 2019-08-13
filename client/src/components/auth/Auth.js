@@ -9,6 +9,7 @@ import Register from './register/Register';
 
 // Redux
 import { connect } from 'react-redux';
+import { select_user } from '../../redux/selectors/user';
 
 // Scss
 import './auth.scss';
@@ -28,8 +29,12 @@ Auth.propTypes = {
   user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ user: { user } }) => ({
-  user
+// const mapStateToProps = ({ user: { user } }) => ({
+//   user
+// });
+
+const mapStateToProps = state => ({
+  user: select_user(state)
 });
 
 export default connect(mapStateToProps, {})(Auth);
