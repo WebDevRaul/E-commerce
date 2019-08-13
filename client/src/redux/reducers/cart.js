@@ -18,6 +18,11 @@ const cart = ( state=INITIAL_STATE, action ) => {
         ...state,
         cart_item: add_item_to_cart(state.cart_item, action.payload)
       }
+    case CART.DELETE_ITEM:
+      return {
+        ...state,
+        cart_item: state.cart_item.filter(item => item.id !== action.payload.id)
+      }
     default:
       return state;
   }
