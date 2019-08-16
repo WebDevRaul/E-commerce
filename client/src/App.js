@@ -18,7 +18,8 @@ import { auth, createUserProfileDocument } from './firebase/utils';
 
 // Redux
 import { Provider } from 'react-redux';
-import store from './store';
+import { store, persistor } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { set_user } from './redux/actions/user';
 
 // Css
@@ -52,23 +53,25 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className='App'>
-          <Router>
-            <Navbar />
-            <Switch>
-              <Route exact path='/' component={HomePage} />
-              <Route exact path='/hats' component={Hats} />
-              <Route exact path='/jackets' component={Jackets} />
-              <Route exact path='/sneakers' component={Sneakers} />
-              <Route exact path='/womens' component={Womens} />
-              <Route exact path='/mens' component={Mens} />
-              <Route exact path='/shop' component={Shop} />
-              <Route exact path='/checkout' component={Checkout} />
+        <PersistGate persistor={persistor}>
+          <div className='App'>
+            <Router>
+              <Navbar />
+              <Switch>
+                <Route exact path='/' component={HomePage} />
+                <Route exact path='/hats' component={Hats} />
+                <Route exact path='/jackets' component={Jackets} />
+                <Route exact path='/sneakers' component={Sneakers} />
+                <Route exact path='/womens' component={Womens} />
+                <Route exact path='/mens' component={Mens} />
+                <Route exact path='/shop' component={Shop} />
+                <Route exact path='/checkout' component={Checkout} />
 
-              <Route exact path='/sign-in' component={Auth} />
-            </Switch>
-          </Router>
-        </div>
+                <Route exact path='/sign-in' component={Auth} />
+              </Switch>
+            </Router>
+          </div>
+        </PersistGate>
       </Provider>
     )
   }
