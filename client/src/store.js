@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 
 import rootReducer from './redux/reducers';
 
-
-const middlewares = [logger];
+const middlewares = [thunk];
 
 export const store = createStore(rootReducer, compose(
   applyMiddleware(...middlewares),
