@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import CheckoutItem from './checkout_item/Checkout_Item';
+import StripeBtn from './stripe/Stripe_Btn';
 
 // Redux
 import { connect } from 'react-redux';
@@ -40,6 +41,7 @@ const Checkout = ({ cart_item, cart_total }) => (
       <br />
       4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
     </div>
+    <StripeBtn price={cart_total} />
   </div>
 );
 
