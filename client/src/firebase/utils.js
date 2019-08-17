@@ -1,9 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth'
-import { config } from '../config/firebase_key/firebase';
+import { firebase_config } from '../config/keys';
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebase_config);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return;

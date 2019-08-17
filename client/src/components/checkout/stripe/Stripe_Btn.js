@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
 
 // Secret
-import { publishable_key } from '../../../config/stripe_key/stripe';
+import { publishable_key } from '../../../config/keys';
 
 const StripeBtn = ({ price }) => {
   const price_for_stripe = price * 100;

@@ -24,5 +24,4 @@ yarn-error.log*
 
 
 # firebase config
-firebase_key
-stripe_key
+keys_dev.js
