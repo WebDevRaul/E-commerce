@@ -26,6 +26,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
   }
   return userRef;
+};
+
+export const addCollAndDoc = (key, data) => {
+  const C_Ref = firestore.collection(key);
+  console.log(C_Ref)
 }
 
 export const auth = firebase.auth();
