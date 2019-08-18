@@ -1,7 +1,7 @@
 import { SHOP } from '../actions/types';
 
 const INITIAL_STATE = {
-  shop: {}
+  shop: null
 }
 
 const shop = ( state=INITIAL_STATE, action ) => {

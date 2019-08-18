@@ -9,10 +9,10 @@ export const select_shop = createSelector(
 
 export const select_collection_obj_to_array = createSelector(
   [select_shop],
-  collections => Object.keys(collections).map(key => collections[key])
+  collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 export const select_collection = collection_url_params => createSelector(
   [select_shop],
-  collections => collections[collection_url_params]
+  collections => collections ? collections[collection_url_params] : null 
 );
