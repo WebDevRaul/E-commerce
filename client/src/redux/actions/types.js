@@ -9,4 +9,8 @@ const CART = {
   DELETE_ITEM: 'DELETE_ITEM'
 }
 
-export { USER, CART }
+const SHOP = {
+  UPDATE_SHOP: 'UPDATE_SHOP'
+}
+
+export { USER, CART, SHOP }

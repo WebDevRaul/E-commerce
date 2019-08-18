@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 // Components
@@ -6,14 +7,20 @@ import CollectionOverview from './collection_overview/Collection_Overview';
 import Collection from './collection/Collection';
 
 // Firestore
-import { firestore, convertItemsToMap } from '../../firebase/utils';
+import { firestore, convertItemsToObj } from '../../firebase/utils';
+
+// Redux
+import { connect } from 'react-redux';
+import { update_shop } from '../../redux/actions/shop';
 
 class Shop extends Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
+    const { update_shop } = this.props;
     const coll_Ref = firestore.collection('items');
     coll_Ref.onSnapshot(async snapshot => {
-      convertItemsToMap(snapshot)
+      const coll_Obj = convertItemsToObj(snapshot);
+      update_shop(coll_Obj)
     })
   }
 
@@ -28,4 +35,8 @@ class Shop extends Component {
   }
 };
 
-export default Shop;
+Shop.propTypes = {
+  update_shop: PropTypes.func.isRequired
+}
+
+export default connect(null, { update_shop })(Shop);

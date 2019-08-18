@@ -1,11 +1,16 @@
-import SHOP_DATA from '../../components/shop/data';
+import { SHOP } from '../actions/types';
 
 const INITIAL_STATE = {
-  shop: SHOP_DATA
+  shop: {}
 }
 
 const shop = ( state=INITIAL_STATE, action ) => {
   switch(action.type) {
+    case SHOP.UPDATE_SHOP:
+      return {
+        ...state,
+        shop: action.payload
+      }
     default:
       return state;
   }

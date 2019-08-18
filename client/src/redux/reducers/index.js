@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import user from './user';
 import cart from './cart';
 import directory from '../data/directory';
-import shop from '../data/shop';
+import shop from './shop';
 
 const persistConfig = {
   key: 'root',

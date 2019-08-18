@@ -40,7 +40,7 @@ export const addCollAndDoc = async (key, data) => {
   return await batch.commit()
 }
 
-export const convertItemsToMap = items => {
+export const convertItemsToObj = items => {
   const transformed_Coll = items.docs.map(doc => {
     const { title, items } = doc.data();
     return {
@@ -49,7 +49,11 @@ export const convertItemsToMap = items => {
       title,
       items
     }
-  })
+  });
+  return transformed_Coll.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc;
+  }, {})
 }
 
 export const auth = firebase.auth();
