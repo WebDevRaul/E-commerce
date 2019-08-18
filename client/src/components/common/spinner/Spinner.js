@@ -5,7 +5,7 @@ import './spinner.scss';
 
 const Spinner = WrappedComponent => ({ isLoading, ...otherProps }) => {
   return isLoading ? 
-    <div className='spinner-overlay'><div className='spiner' /></div> 
+    <div className='spinner-overlay'><div className='spinner' /></div> 
     :
     <WrappedComponent { ...otherProps } />
 }

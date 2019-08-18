@@ -13,4 +13,8 @@ const SHOP = {
   UPDATE_SHOP: 'UPDATE_SHOP'
 }
 
-export { USER, CART, SHOP }
+const LOADING = {
+  IS_LOADING: 'IS_LOADING'
+}
+
+export { USER, CART, SHOP, LOADING }
