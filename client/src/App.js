@@ -10,15 +10,11 @@ import Auth from './components/auth/Auth';
 import Checkout from './components/checkout/Checkout';
 
 // Firebase
-import { auth, createUserProfileDocument, addCollAndDoc } from './firebase/utils';
+import { auth, createUserProfileDocument } from './firebase/utils';
 
 // Redux
 import { connect } from 'react-redux';
 import { set_user } from './redux/actions/user';
-import { select_collection_obj_to_array } from './redux/selectors/shop';
-
-// Reselect
-import { createStructuredSelector } from 'reselect';
 
 // Css
 import './App.css';
@@ -28,7 +24,7 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { collections, set_user } = this.props;
+    const { set_user } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -39,7 +35,7 @@ class App extends Component {
         set_user({});
       }
     });
-    addCollAndDoc('collections', collections)
+    // addCollAndDoc('items', items.map(({ title, items }) => ({ title, items })))
   };
 
   componentWillUnmount() {
@@ -67,11 +63,6 @@ class App extends Component {
 
 App.propTypes = {
   set_user: PropTypes.func.isRequired,
-  collections: PropTypes.array.isRequired
 }
 
-const mapStateToProps = createStructuredSelector({
-  collections: select_collection_obj_to_array
-});
-
-export default connect(mapStateToProps, { set_user })(App);
+export default connect(null, { set_user })(App);
