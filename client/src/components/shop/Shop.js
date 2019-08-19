@@ -9,9 +9,6 @@ import Collection from './collection/Collection';
 // Reselect
 import { createStructuredSelector } from 'reselect';
 
-// Firestore
-import { firestore, convertItemsToObj } from '../../firebase/utils';
-
 // Redux
 import { connect } from 'react-redux';
 import { update_shop } from '../../redux/actions/shop';
@@ -22,14 +19,8 @@ const SCollectionOverview = Spinner(CollectionOverview);
 const SCollection = Spinner(Collection)
 
 class Shop extends Component {
-  unsubscribeFromAuth = null;
   componentDidMount() {
-    const { update_shop } = this.props;
-    const coll_Ref = firestore.collection('items');
-    coll_Ref.onSnapshot(async snapshot => {
-      const coll_Obj = convertItemsToObj(snapshot);
-      update_shop(coll_Obj)
-    })
+    this.props.update_shop();
   }
 
   render() {

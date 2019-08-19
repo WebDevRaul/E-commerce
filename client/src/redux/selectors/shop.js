@@ -1,12 +1,11 @@
 import { createSelector } from 'reselect';
 
 const select_shop_state = state => state.shop;
-const select_isLoading_state = state => state.shop.isLoading;
 
 export const select_isLoading = createSelector(
-  [select_isLoading_state],
-  isLoading => isLoading
-);
+  [select_shop_state],
+  shop => shop.isLoading,
+  );
 
 export const select_shop = createSelector(
   [select_shop_state],

@@ -10,7 +10,9 @@ const CART = {
 }
 
 const SHOP = {
-  UPDATE_SHOP: 'UPDATE_SHOP'
+  LOADING: 'LOADING',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR'
 }
 
 export { USER, CART, SHOP }
