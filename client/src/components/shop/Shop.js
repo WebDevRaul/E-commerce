@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect';
 // Redux
 import { connect } from 'react-redux';
 import { update_shop } from '../../redux/actions/shop';
-import { select_isLoading } from '../../redux/selectors/shop';
+import { select_isLoading, select_collection_isLoaded } from '../../redux/selectors/shop';
 import Spinner from '../common/spinner/Spinner';
 
 const SCollectionOverview = Spinner(CollectionOverview);
@@ -24,7 +24,7 @@ class Shop extends Component {
   }
 
   render() {
-    const { match, loading } = this.props;
+    const { match, loading, isLoaded } = this.props;
     return (
       <div className='shop-page'>
         <Route 
@@ -33,7 +33,7 @@ class Shop extends Component {
           />
         <Route 
           path={`${match.path}/:collection_id`} 
-          render={ props => <SCollection isLoading={loading} {...props} /> } 
+          render={ props => <SCollection isLoading={!isLoaded} {...props} /> } 
         />
       </div>
     )
@@ -42,11 +42,13 @@ class Shop extends Component {
 
 Shop.propTypes = {
   update_shop: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  isLoaded: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  loading: select_isLoading
+  loading: select_isLoading,
+  isLoaded: select_collection_isLoaded
 });
 
 export default connect(mapStateToProps, { update_shop })(Shop);

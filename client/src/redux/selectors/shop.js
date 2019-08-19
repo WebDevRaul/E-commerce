@@ -21,3 +21,8 @@ export const select_collection = collection_url_params => createSelector(
   [select_shop],
   collections => collections ? collections[collection_url_params] : null 
 );
+
+export const select_collection_isLoaded = createSelector(
+  [select_shop_state],
+  shop => !!shop.shop
+);
