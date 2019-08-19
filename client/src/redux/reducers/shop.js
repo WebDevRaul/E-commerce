@@ -1,17 +1,12 @@
-import { SHOP, LOADING } from '../actions/types';
+import { SHOP } from '../actions/types';
 
 const INITIAL_STATE = {
   shop: null,
-  isLoading: false
+  isLoading: true
 }
 
 const shop = ( state=INITIAL_STATE, action ) => {
   switch(action.type) {
-    case LOADING.IS_LOADING:
-      return {
-        ...state,
-        isLoading: true
-      }
     case SHOP.UPDATE_SHOP:
       return {
         ...state,

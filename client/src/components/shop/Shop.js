@@ -15,7 +15,6 @@ import { firestore, convertItemsToObj } from '../../firebase/utils';
 // Redux
 import { connect } from 'react-redux';
 import { update_shop } from '../../redux/actions/shop';
-import { isLoading } from '../../redux/actions/isLoading';
 import { select_isLoading } from '../../redux/selectors/shop';
 import Spinner from '../common/spinner/Spinner';
 
@@ -25,8 +24,7 @@ const SCollection = Spinner(Collection)
 class Shop extends Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
-    const { update_shop, isLoading } = this.props;
-    isLoading();
+    const { update_shop } = this.props;
     const coll_Ref = firestore.collection('items');
     coll_Ref.onSnapshot(async snapshot => {
       const coll_Obj = convertItemsToObj(snapshot);
@@ -53,12 +51,11 @@ class Shop extends Component {
 
 Shop.propTypes = {
   update_shop: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  isLoading: PropTypes.func.isRequired
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: select_isLoading
 });
 
-export default connect(mapStateToProps, { update_shop, isLoading })(Shop);
+export default connect(mapStateToProps, { update_shop })(Shop);
