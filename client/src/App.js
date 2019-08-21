@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -19,46 +19,38 @@ import { set_user } from './redux/actions/user';
 // Css
 import './App.css';
 
-class App extends Component {
+const App = ({ set_user }) => {
 
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const { set_user } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-      if (userAuth) {
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapShot => {
-          set_user({ id: snapShot.id, ...snapShot.data() });
+        userRef.onSnapshot(snapshot => {
+          set_user({ id: snapshot.id, ...snapshot.data() });
         });
       } else {
         set_user({});
       }
     });
-    // addCollAndDoc('items', items.map(({ title, items }) => ({ title, items })))
-  };
+    return () => {
+      unsubscribeFromAuth()
+    }
+  },[set_user])
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-  
-  
-  render() {
-    return (
-      <div className='App'>
-        <Router>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/shop' component={Shop} />
-            <Route exact path='/checkout' component={Checkout} />
+  return (
+    <div className='App'>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={Shop} />
+          <Route exact path='/checkout' component={Checkout} />
 
-            <Route exact path='/sign-in' component={Auth} />
-          </Switch>
-        </Router>
-      </div>
-    )
-  }
+          <Route exact path='/sign-in' component={Auth} />
+        </Switch>
+      </Router>
+    </div>
+  )
 };
 
 App.propTypes = {
