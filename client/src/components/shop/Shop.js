@@ -3,20 +3,13 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 // Components
-import CollectionOverview from './collection_overview/Collection_Overview';
-import Collection from './collection/Collection';
-
-// Reselect
-import { createStructuredSelector } from 'reselect';
+import ContainerOverview from './collection_overview/Container_Overview';
+import ContainerCollection from './collection/Container_Collection';
 
 // Redux
 import { connect } from 'react-redux';
 import { update_shop } from '../../redux/actions/shop';
-import { select_isLoading, select_collection_isLoaded } from '../../redux/selectors/shop';
-import Spinner from '../common/spinner/Spinner';
 
-const SCollectionOverview = Spinner(CollectionOverview);
-const SCollection = Spinner(Collection)
 
 class Shop extends Component {
   componentDidMount() {
@@ -24,16 +17,12 @@ class Shop extends Component {
   }
 
   render() {
-    const { match, loading, isLoaded } = this.props;
+    const { match } = this.props;
     return (
       <div className='shop-page'>
+        <Route exact path={`${match.path}`} component={ContainerOverview} />
         <Route 
-          exact path={`${match.path}`} 
-          render={ props => <SCollectionOverview isLoading={loading} {...props} /> }
-          />
-        <Route 
-          path={`${match.path}/:collection_id`} 
-          render={ props => <SCollection isLoading={!isLoaded} {...props} /> } 
+          path={`${match.path}/:collection_id`} component={ContainerCollection}
         />
       </div>
     )
@@ -41,14 +30,7 @@ class Shop extends Component {
 };
 
 Shop.propTypes = {
-  update_shop: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  isLoaded: PropTypes.bool.isRequired
+  update_shop: PropTypes.func.isRequired
 };
 
-const mapStateToProps = createStructuredSelector({
-  loading: select_isLoading,
-  isLoaded: select_collection_isLoaded
-});
-
-export default connect(mapStateToProps, { update_shop })(Shop);
+export default connect(null, { update_shop })(Shop);
