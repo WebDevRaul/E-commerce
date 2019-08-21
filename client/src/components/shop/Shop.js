@@ -10,7 +10,6 @@ import ContainerCollection from './collection/Container_Collection';
 import { connect } from 'react-redux';
 import { update_shop } from '../../redux/actions/shop';
 
-
 class Shop extends Component {
   componentDidMount() {
     this.props.update_shop();
@@ -21,9 +20,7 @@ class Shop extends Component {
     return (
       <div className='shop-page'>
         <Route exact path={`${match.path}`} component={ContainerOverview} />
-        <Route 
-          path={`${match.path}/:collection_id`} component={ContainerCollection}
-        />
+        <Route path={`${match.path}/:collection_id`} component={ContainerCollection} />
       </div>
     )
   }
