@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 // Components
 import StripeCheckout from 'react-stripe-checkout';
 
+// Redux
+import { connect } from 'react-redux';
+import makePayment from '../../../redux/actions/checkout';
+
 // Secret
 import { publishable_key } from '../../../config/keys';
 
-const StripeBtn = ({ price }) => {
+const StripeBtn = ({ price, makePayment }) => {
   const price_for_stripe = price * 100;
   const stripe_key = publishable_key;
 
   const onToken = token => {
-    console.log(token);
-    alert('Payment Success');
+    const data = { amount: price_for_stripe, token };
+    makePayment(data);
   }
 
   return(
@@ -33,8 +37,9 @@ const StripeBtn = ({ price }) => {
 }
 
 StripeBtn.propTypes = {
-  price: PropTypes.number.isRequired
+  price: PropTypes.number.isRequired,
+  makePayment: PropTypes.func.isRequired
 }
 
 
-export default StripeBtn;
+export default connect(null, { makePayment })(StripeBtn);

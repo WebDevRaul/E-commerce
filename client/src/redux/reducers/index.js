@@ -6,6 +6,7 @@ import user from './user';
 import cart from './cart';
 import directory from '../data/directory';
 import shop from './shop';
+import payment from './checkout';
 
 const persistConfig = {
   key: 'root',
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user,
   cart,
   directory,
-  shop
+  shop,
+  payment
 });
 
 

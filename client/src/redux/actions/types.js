@@ -15,4 +15,9 @@ const SHOP = {
   ERROR: 'ERROR'
 }
 
-export { USER, CART, SHOP }
+const CHECKOUT = {
+  MAKE_PAYMENT: 'MAKE_PAYMENT',
+  ERROR_PAYMENT: 'ERROR_PAYMENT'
+}
+
+export { USER, CART, SHOP, CHECKOUT }
