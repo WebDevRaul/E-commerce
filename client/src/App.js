@@ -32,6 +32,7 @@ const App = ({ set_user }) => {
         set_user({});
       }
     });
+    
     return () => {
       unsubscribeFromAuth()
     }
